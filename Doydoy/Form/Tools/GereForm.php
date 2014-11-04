@@ -1891,6 +1891,7 @@ abstract class Doydoy_Form_Tools_GereForm extends Doydoy_Form_FormAbstract {
       $class_defaut_label = $this->getDefaultLabelClassCSS();
       if(isset($element_du_tableau['label'])
       || isset($element_du_tableau['label_deco_tag'])
+      || isset($element_du_tableau['no_label_deco_tag'])
       || isset($element_du_tableau['label_deco_css'])
       || isset($element_du_tableau['label_deco_id'])
       || isset($element_du_tableau['only_label']) // juste le label donc si on a une décorateur DtDdWrapper, il faut le modifier
@@ -1940,8 +1941,13 @@ abstract class Doydoy_Form_Tools_GereForm extends Doydoy_Form_FormAbstract {
           $deco_label->setOption('tag', $element_du_tableau['label_deco_tag']);    
         }
         else {         
-          $tag = $this->getDefaultTagLabel();          
-          $deco_label->setOption('tag', $tag);
+          if(isset($element_du_tableau['no_label_deco_tag'])){      
+            $deco_label->removeOption('tag');
+          }
+          else{
+            $tag = $this->getDefaultTagLabel();          
+            $deco_label->setOption('tag', $tag);
+          }
         }
 
         // Rajout de css pour le décorateur Label
