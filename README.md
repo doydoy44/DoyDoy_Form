@@ -1,4 +1,4 @@
-DoyDoy_Form
+doydoyForm
 ===========
 
 Zend_Form extension to manage large form without sub forms
